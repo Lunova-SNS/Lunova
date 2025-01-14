@@ -21,10 +21,10 @@ export const Button: React.FC<ButtonProps> = ({
 	type = 'button',
 	minWidth = 'min-w-full',
 	minHeight = 'min-h-[36px]',
-	textSize = 'text-[14px]',
+	textSize = 'text-lg',
 	textColor = 'text-[#000000]',
 	fontBold = 'font-semibold',
-	borderRadius = 'rounded-[10px]',
+	borderRadius = 'rounded-default',
 	...props
 }) => {
 	const baseStyles = `${minHeight} ${minWidth} ${textSize} ${textColor} ${fontBold} ${borderRadius} flex items-center justify-center bg-mainColor duration-300 hover:bg-[#629ada] active:scale-95`;

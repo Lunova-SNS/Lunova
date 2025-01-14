@@ -27,7 +27,7 @@ export const Input: React.FC<InputProps> = ({
 	isValid = true,
 	minWidth = 'min-w-full',
 	minHeight = 'min-h-[36px]',
-	textSize = 'text-[12px]',
+	textSize = 'text-base',
 	fontBold = 'font-semibold',
 	...props
 }) => {
@@ -42,7 +42,7 @@ export const Input: React.FC<InputProps> = ({
 	const combinedStyles = `${baseStyles} ${borderStyles} ${disabledStyles} ${className}`;
 
 	return (
-		<div className='mb-4'>
+		<>
 			<input
 				type={type}
 				value={value}
@@ -54,11 +54,11 @@ export const Input: React.FC<InputProps> = ({
 			/>
 
 			{!isValid && errorMessage && (
-				<p className='mt-1 flex items-center text-xs font-light text-error'>
+				<p className='absolute mt-[2px] flex items-center text-xs font-light text-error'>
 					<PiAsteriskSimpleBold size='10px' />
 					<span className='ml-[2px]'>{errorMessage}</span>
 				</p>
 			)}
-		</div>
+		</>
 	);
 };
