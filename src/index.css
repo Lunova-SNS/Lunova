@@ -32,3 +32,6 @@ body {
 body {
 	font-family: 'Inter', 'Pretendard', sans-serif; /* Inter가 먼저 적용, 한글은 Pretendard로 fallback */
 }
+::-webkit-scrollbar {
+	display: none;
+}
