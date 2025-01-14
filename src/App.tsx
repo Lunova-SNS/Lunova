@@ -4,6 +4,9 @@ import CommonLayout from './layouts/CommonLayout';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import MainLayout from './layouts/MainLayout';
+import { LoginPage } from './pages/LoginPage';
+import { SignUpPage } from './pages/SignUpPage';
+import { SettingPage } from './pages/SettingPage';
 import UploadPage from './pages/UploadPage';
 
 function App() {
@@ -13,10 +16,12 @@ function App() {
 				<Route element={<MainLayout />}>
 					<Route path='/' element={<MainPage />} />
 				</Route>
-
 				<Route path='/header' element={<Header />} />
 				<Route path='/footer' element={<Footer />} />
-				<Route path='/uploadPage' element={<UploadPage />} />
+				<Route path='/uploadPage' element={<UploadPage />} />/
+				<Route path='/login' element={<LoginPage />} />
+				<Route path='/signup' element={<SignUpPage />} />
+				<Route path='/setting' element={<SettingPage />} />
 			</Route>
 		</Routes>
 	);
