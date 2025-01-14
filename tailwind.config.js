@@ -31,7 +31,18 @@ export default {
 				lg: '14px', // 약간 큰 텍스트
 				xl: '20px', // 큰 텍스트
 			},
+			margin: {
+				default: '30px',
+			},
+			borderRadius: {
+				xs: '4px',
+				sm: '5px',
+				default: '10px',
+			},
 		},
 	},
-	plugins: [],
+	plugins: [
+		require('tailwind-scrollbar'), // 플러그인 추가
+		require('tailwind-scrollbar-hide'), // 스크롤바 숨김 기능 추가
+	],
 };
