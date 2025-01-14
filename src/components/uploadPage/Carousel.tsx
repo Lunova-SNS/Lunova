@@ -3,9 +3,10 @@ import { EmblaOptionsType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 import Fade from 'embla-carousel-fade';
 import { NextButton, PrevButton, usePrevNextButtons } from '@/components/uploadPage/CarouselArrow';
+import '@/assets/carousel/carousel.css';
 
 type PropType = {
-	slides: number[];
+	slides: string[];
 	options?: EmblaOptionsType;
 };
 
@@ -22,23 +23,17 @@ const Carousel: React.FC<PropType> = (props) => {
 				<div className='embla__container'>
 					{slides.map((index) => (
 						<div className='embla__slide' key={index}>
-							<img
-								className='embla__slide__img'
-								src={`https://picsum.photos/600/350?v=${index}`}
-								alt='Your alt text'
-							/>
+							<img className='embla__slide__img' src={index} alt='Your alt text' />
 						</div>
 					))}
 				</div>
 			</div>
-
 			<div className='embla__controls'>
 				<div className='embla__buttons'>
 					<PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
 					<NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
 				</div>
-
-				<div className='embla__dots'></div>
+				{/* <div className='embla__dots'></div> */}
 			</div>
 		</div>
 	);
