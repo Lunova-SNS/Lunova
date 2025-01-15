@@ -42,7 +42,7 @@
 .embla__buttons {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	gap: 204px;
+	gap: 200px;
 	align-items: center;
 	color: #9dc6f5;
 }
