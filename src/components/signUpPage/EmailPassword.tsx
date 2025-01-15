@@ -4,11 +4,11 @@ import { Input } from '../common/Input';
 
 export const EmailPassword = () => {
 	return (
-		<>
+		<div className='flex min-w-full flex-col'>
 			{/* 이메일 */}
-			<div className='mb-[16px] flex'>
-				<div>
-					<Input minWidth='min-w-[213px]' placeholder='이메일' />
+			<div className='mb-[16px] flex min-w-full justify-end'>
+				<div className='flex-grow'>
+					<Input placeholder='이메일' />
 				</div>
 				<Button
 					className='ml-[15px]'
@@ -21,11 +21,11 @@ export const EmailPassword = () => {
 			</div>
 
 			{/* 비밀번호 */}
-			<div className='mb-[16px]'>
+			<div className='mb-[16px] min-w-full'>
 				<Input placeholder='비밀번호' />
 			</div>
 
-			<div className='mb-[30px]'>
+			<div className='mb-[30px] min-w-full'>
 				<Input placeholder='비밀번호 확인' />
 			</div>
 
@@ -37,6 +37,6 @@ export const EmailPassword = () => {
 					<p>소문자, 대문자, 숫자, 특수 문자(!@#$%^&*)를 각각 하나 이상 포함하세요.</p>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };

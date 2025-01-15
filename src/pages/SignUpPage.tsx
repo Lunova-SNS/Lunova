@@ -16,16 +16,15 @@ export const SignUpPage = () => {
 	const navigate = useNavigate();
 
 	return (
-		<div className='mx-default flex flex-col items-center'>
-			<BackButton
-				onClick={() => setSectionCount((prev) => prev - 1)}
-				overrideBack={true}
-				fallbackUrl={section[sectionCount.toString()] === 'emailPassword' ? '/login' : '/signup'}
-				className='absolute left-[30px] top-[38px]'
-			/>
+		<div className='min-w-full px-[30px]'>
+			<div className='pt-5'>
+				<BackButton
+					onClick={() => setSectionCount((prev) => prev - 1)}
+					overrideBack={true}
+					fallbackUrl={section[sectionCount.toString()] === 'emailPassword' ? '/login' : '/signup'}
+				/>
 
-			<div className='mt-[66px] min-w-full'>
-				<h1 className='text-[20px] font-bold'>
+				<h1 className='pt-2 text-[20px] font-bold'>
 					{section[sectionCount.toString()] === 'emailPassword'
 						? '회원가입'
 						: section[sectionCount.toString()] === 'userName'
@@ -34,31 +33,31 @@ export const SignUpPage = () => {
 								? '사용자 이름 만들기'
 								: false}
 				</h1>
-
-				<section className='my-[22px]'>
-					{section[sectionCount.toString()] === 'emailPassword' ? (
-						<EmailPassword />
-					) : section[sectionCount.toString()] === 'userName' ? (
-						<div className='mb-[16px]'>
-							<Input placeholder='이름' />
-						</div>
-					) : section[sectionCount.toString()] === 'nickName' ? (
-						<div className='mb-[16px]'>
-							<Input placeholder='사용자 이름' />
-						</div>
-					) : (
-						false
-					)}
-				</section>
-
-				<Button
-					onClick={() => {
-						sectionCount < 2 ? setSectionCount((prev) => prev + 1) : navigate('/');
-					}}
-				>
-					다음
-				</Button>
 			</div>
+
+			<section className='my-[22px] flex flex-col items-center'>
+				{section[sectionCount.toString()] === 'emailPassword' ? (
+					<EmailPassword />
+				) : section[sectionCount.toString()] === 'userName' ? (
+					<div className='mb-[16px] min-w-full'>
+						<Input placeholder='이름' />
+					</div>
+				) : section[sectionCount.toString()] === 'nickName' ? (
+					<div className='mb-[16px] min-w-full'>
+						<Input placeholder='사용자 이름' />
+					</div>
+				) : (
+					false
+				)}
+			</section>
+
+			<Button
+				onClick={() => {
+					sectionCount < 2 ? setSectionCount((prev) => prev + 1) : navigate('/');
+				}}
+			>
+				다음
+			</Button>
 		</div>
 	);
 };
