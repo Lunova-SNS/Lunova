@@ -19,6 +19,7 @@ function App() {
 				<Route path='/header' element={<Header />} />
 				<Route path='/footer' element={<Footer />} />
 				<Route path='/uploadPage' element={<UploadPage />} />/
+				<Route path='/uploadPage/:post_id' element={<UploadPage />} />/
 				<Route path='/login' element={<LoginPage />} />
 				<Route path='/signup' element={<SignUpPage />} />
 				<Route path='/setting' element={<SettingPage />} />
