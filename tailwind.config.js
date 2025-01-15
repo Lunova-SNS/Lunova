@@ -31,6 +31,14 @@ export default {
 				lg: '14px', // 약간 큰 텍스트
 				xl: '20px', // 큰 텍스트
 			},
+			margin: {
+				default: '30px',
+			},
+			borderRadius: {
+				xs: '4px',
+				sm: '5px',
+				default: '10px',
+			},
 		},
 	},
 	plugins: [],

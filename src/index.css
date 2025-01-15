@@ -26,9 +26,12 @@
 html,
 body {
 	box-sizing: border-box;
-	background: #f7f7f7;
+	background: #ffffff;
 }
 
 body {
 	font-family: 'Inter', 'Pretendard', sans-serif; /* Inter가 먼저 적용, 한글은 Pretendard로 fallback */
+}
+::-webkit-scrollbar {
+	display: none;
 }
