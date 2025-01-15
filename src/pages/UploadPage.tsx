@@ -1,8 +1,9 @@
-import { RxArrowLeft } from 'react-icons/rx';
 import Carousel from '@/components/uploadPage/Carousel';
 import { BiPlus } from 'react-icons/bi';
 import { useEffect, useState } from 'react';
 import { FileItem } from '@/types/uploasdPage';
+import { Button } from '@/components/common/Button';
+import { BackButton } from '@/components/common/BackButton';
 
 const UploadPage = () => {
 	const [fileList, setFileList] = useState<FileItem[]>([]);
@@ -28,10 +29,10 @@ const UploadPage = () => {
 				videoElement.src = preview;
 
 				if (videoCount > 0) {
-					alert('동영상은 최대 1개만 업로드할 수 있습니다.');
+					// alert('동영상은 최대 1개만 업로드할 수 있습니다.');
 					URL.revokeObjectURL(preview);
 				} else if (fileSizeMB > 50) {
-					alert('동영상 크기는 50MB를 초과할 수 없습니다.');
+					// alert('동영상 크기는 50MB를 초과할 수 없습니다.');
 					URL.revokeObjectURL(preview);
 				}
 
@@ -77,53 +78,51 @@ const UploadPage = () => {
 	console.log(Previews);
 	console.log(fileList);
 
-	// 	setShowPreviews((prevShowPreviews) => {
-	// 		const remainingSlots = Math.max(5 - prevShowPreviews.length, 0);
-	// 		return [...prevShowPreviews, ...newUrlLists.slice(0, remainingSlots)];
-	// 	});
-
-	// 	setFiles((prevFiles) => {
-	// 		return [...prevFiles, ...newFiles.slice(0, remainingSlots)];
-	// 	});
-	// };
-
-	// console.log(showPreviews);
-	// console.log(files);
-
-	// useEffect(() => {
-	// 	return () => {
-	// 		showPreviews.forEach((url) => URL.revokeObjectURL(url));
-	// 	};
-	// }, [showPreviews]);
-
 	return (
 		<>
 			<div className='mx-default'>
 				<header className='pt-10'>
 					<div className='pb-6'>
-						<RxArrowLeft size={26} />
+						<BackButton />
 					</div>
 					<h1 className='pb-5 text-xl font-bold'>게시글 작성</h1>
 				</header>
 				<main className='flex justify-center'>
-					<div className='flex max-w-[300px] flex-col items-end gap-3'>
-						<label htmlFor='file' className='flex w-5 justify-center rounded-sm bg-mainColor'>
-							<BiPlus />
-						</label>
-						<input
-							type='file'
-							name='file'
-							id='file'
-							multiple
-							accept='image/* ,video/*'
-							className='hidden'
-							onFocus={(e) => (e.currentTarget.value = '')}
-							onChange={handleSaveFiles}
-							required
-						/>
-						<div className='rounded-default h-[304px] w-[304px] border-2 border-mainColor bg-white'>
-							<Carousel slides={Previews} />
+					<div className='flex max-w-[300px] flex-col items-end'>
+						<div className='flex flex-col items-end'>
+							<label
+								htmlFor='file'
+								className='mb-3 flex w-5 cursor-pointer justify-center rounded-sm bg-mainColor duration-300 hover:bg-[#629ada] active:scale-95'
+							>
+								<BiPlus color='white' size={20} />
+							</label>
+
+							<input
+								type='file'
+								name='file'
+								id='file'
+								multiple
+								accept='image/* ,video/*'
+								className='hidden'
+								onFocus={(e) => (e.currentTarget.value = '')}
+								onChange={handleSaveFiles}
+								required
+							/>
+							<div className='mb-4 h-[304px] w-[300px] rounded-default border-2 border-mainColor bg-white'>
+								<Carousel slides={Previews} />
+							</div>
 						</div>
+
+						<textarea
+							id='description'
+							name='description'
+							maxLength={150}
+							minLength={0}
+							wrap='hard'
+							placeholder='오늘의 아우라를 표현해보세요 ✨'
+							className='mb-9 h-28 w-[300px] resize-none rounded-default p-2 text-base focus:border-[#9DC6F5] focus:outline-none focus:ring-2 focus:ring-[#9DC6F5]'
+						></textarea>
+						<Button children={'업로드'}></Button>
 					</div>
 				</main>
 			</div>
