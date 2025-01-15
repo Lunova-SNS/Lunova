@@ -13,6 +13,7 @@ interface InputProps {
 	minHeight?: string;
 	textSize?: string;
 	fontBold?: string;
+	backgroundColor?: string;
 	[key: string]: any; // 추가적인 HTML 속성
 }
 
@@ -29,15 +30,16 @@ export const Input: React.FC<InputProps> = ({
 	minHeight = 'min-h-[36px]',
 	textSize = 'text-base',
 	fontBold = 'font-semibold',
+	backgroundColor = 'bg-backColor',
 	...props
 }) => {
-	const baseStyles = `block ${minWidth} ${minHeight} ${textSize} ${fontBold} px-[16px] rounded-[10px] border border-[#A4A4A4] focus:outline-none transition duration-200`;
+	const baseStyles = `block ${minWidth} ${minHeight} ${textSize} ${fontBold} ${backgroundColor} px-[16px] rounded-[10px] border border-[#A4A4A4] focus:outline-none transition duration-200`;
 
 	const borderStyles = isValid
 		? 'border-gray-300 focus:ring-1 focus:ring-blue-500'
 		: 'border-error focus:ring-1 focus:ring-error';
 
-	const disabledStyles = disabled ? 'bg-gray-200 cursor-not-allowed' : 'bg-backColor';
+	const disabledStyles = disabled ? 'bg-gray-200 cursor-not-allowed' : `${backgroundColor}`;
 
 	const combinedStyles = `${baseStyles} ${borderStyles} ${disabledStyles} ${className}`;
 
