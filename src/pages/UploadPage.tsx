@@ -1,7 +1,7 @@
 import Carousel from '@/components/uploadPage/Carousel';
 import { BiPlus } from 'react-icons/bi';
 import { useEffect, useState } from 'react';
-import { FileItem } from '@/types/uploasdPage';
+import { FileItem } from '@/types/uploadPage';
 import { Button } from '@/components/common/Button';
 import { BackButton } from '@/components/common/BackButton';
 import { useParams } from 'react-router-dom';
@@ -96,11 +96,11 @@ const UploadPage = () => {
 	return (
 		<>
 			<div className='mx-default'>
-				<header className='pt-10'>
-					<div className='pb-6'>
+				<header className='pt-5'>
+					<div className='pb-2'>
 						<BackButton />
 					</div>
-					<h1 className='pb-5 text-xl font-bold'>{post_id ? '게시글 수정' : '게시글 생성'}</h1>
+					<h1 className='pb-1 text-xl font-bold'>{post_id ? '게시글 수정' : '게시글 생성'}</h1>
 				</header>
 				<main className='flex justify-center'>
 					<div className='flex max-w-[300px] flex-col items-end'>
@@ -139,7 +139,7 @@ const UploadPage = () => {
 								wrap='hard'
 								onChange={handleTextCount}
 								placeholder='오늘의 아우라를 표현해보세요 ✨'
-								className='mb-9 h-28 w-[300px] resize-none rounded-default p-2 text-base focus:border-[#9DC6F5] focus:outline-none focus:ring-2 focus:ring-[#9DC6F5]'
+								className='mb-8 h-28 w-[300px] resize-none rounded-default p-2 text-base focus:border-[#9DC6F5] focus:outline-none focus:ring-2 focus:ring-[#9DC6F5]'
 							></textarea>
 							<div className='absolute bottom-11 right-2 text-sm text-subText'>
 								{maxLength - text.length} / {maxLength}

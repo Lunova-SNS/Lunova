@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import MainPage from '@/pages/MainPage';
 import CommonLayout from './layouts/CommonLayout';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Header from './components/common/Header';
+import Footer from './components/common/Footer';
 import MainLayout from './layouts/MainLayout';
 import { LoginPage } from './pages/LoginPage';
 import { SignUpPage } from './pages/SignUpPage';
