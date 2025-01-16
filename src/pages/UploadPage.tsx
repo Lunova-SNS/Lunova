@@ -1,4 +1,4 @@
-import Carousel from '@/components/uploadPage/Carousel';
+import Carousel from '@/components/uploadPage/UploadCarousel';
 import { BiPlus } from 'react-icons/bi';
 import { useEffect, useState } from 'react';
 import { FileItem } from '@/types/uploadPage';
@@ -84,7 +84,7 @@ const UploadPage = () => {
 				URL.revokeObjectURL(item.previewURL);
 			});
 		};
-	}, [fileList]);
+	}, []);
 
 	const Previews = fileList.map((file) => file.previewURL);
 
@@ -92,7 +92,6 @@ const UploadPage = () => {
 	console.log(fileList);
 
 	//이미지 삭제 구현, 텍스트 제한 표기, 사진 및 동영상 제한 표기
-
 	return (
 		<>
 			<div className='mx-default'>
@@ -103,15 +102,14 @@ const UploadPage = () => {
 					<h1 className='pb-1 text-xl font-bold'>{post_id ? '게시글 수정' : '게시글 생성'}</h1>
 				</header>
 				<main className='flex justify-center'>
-					<div className='flex max-w-[300px] flex-col items-end'>
+					<div className='flex min-w-[300px] flex-col items-end'>
 						<div className='flex flex-col items-end'>
 							<label
 								htmlFor='file'
-								className='mb-3 flex w-5 cursor-pointer justify-center rounded-sm bg-mainColor duration-300 hover:bg-[#629ada] active:scale-95'
+								className='mb-[2vh] flex w-5 cursor-pointer justify-center rounded-sm bg-mainColor duration-300 hover:bg-[#629ada] active:scale-95'
 							>
 								<BiPlus color='white' size={20} />
 							</label>
-
 							<input
 								type='file'
 								name='file'
@@ -126,7 +124,7 @@ const UploadPage = () => {
 							<div className='h-[304px] w-[300px] rounded-default border-2 border-mainColor bg-white'>
 								<Carousel slides={Previews} />
 							</div>
-							<div className='mb-2 mt-1 text-xs text-subText'>
+							<div className='mb-[1vh] mt-1 text-xs text-subText'>
 								* 사진 최소 1장, 최대 5장 (장당 5MB 제한) / 동영상 1개까지 첨부 가능 (10MB 제한)
 							</div>
 						</div>
@@ -139,13 +137,12 @@ const UploadPage = () => {
 								wrap='hard'
 								onChange={handleTextCount}
 								placeholder='오늘의 아우라를 표현해보세요 ✨'
-								className='mb-8 h-28 w-[300px] resize-none rounded-default p-2 text-base focus:border-[#9DC6F5] focus:outline-none focus:ring-2 focus:ring-[#9DC6F5]'
+								className='mb-[4.1vh] h-28 w-[300px] resize-none rounded-default p-2 text-base focus:border-[#9DC6F5] focus:outline-none focus:ring-2 focus:ring-[#9DC6F5]'
 							></textarea>
-							<div className='absolute bottom-11 right-2 text-sm text-subText'>
+							<div className='absolute bottom-[5vh] right-2 text-sm text-subText'>
 								{maxLength - text.length} / {maxLength}
 							</div>
 						</div>
-
 						<Button children={'업로드'}></Button>
 					</div>
 				</main>

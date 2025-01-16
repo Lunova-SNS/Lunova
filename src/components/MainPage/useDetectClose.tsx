@@ -9,19 +9,19 @@ const useDetectClose = ({
 	const [isOpen, setIsOpen] = useState<boolean>(initialState);
 
 	useEffect(() => {
-		const onClick = (e: MouseEvent) => {
-			if (dropDownRef!.current && !dropDownRef!.current.contains(e.target as Node)) {
+		const onClickOutside = (e: MouseEvent) => {
+			if (dropDownRef.current && !dropDownRef.current.contains(e.target as Node)) {
 				setIsOpen(false);
 			}
 		};
 		if (isOpen) {
-			window.addEventListener('click', onClick);
+			window.addEventListener('click', onClickOutside);
 		}
 		// cleanup 함수 반환
 		return () => {
-			window.removeEventListener('click', onClick);
+			window.removeEventListener('click', onClickOutside);
 		};
-	}, [dropDownRef]);
+	}, [isOpen, dropDownRef]);
 
 	return [isOpen, setIsOpen];
 };
