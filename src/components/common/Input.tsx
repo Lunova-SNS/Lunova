@@ -7,7 +7,7 @@ interface InputProps {
 	placeholder?: string;
 	disabled?: boolean;
 	className?: string;
-	errorMessage?: string;
+	errorMessage?: any;
 	isValid?: boolean;
 	minWidth?: string;
 	minHeight?: string;
