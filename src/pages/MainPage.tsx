@@ -2,7 +2,7 @@ import Post from '@/components/common/Post';
 import DropDown from '@/components/mainPage/DropDown';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 
-export default function mainPage() {
+export default function MainPage() {
 	const dummyPosts = Array.from({ length: 5 }, (_, index) => ({
 		id: index + 1,
 		username: `User${index + 1}`,
@@ -15,12 +15,12 @@ export default function mainPage() {
 	}));
 
 	return (
-		<div>
+		<div className=''>
 			<div className='mt-2 flex h-6 flex-row'>
 				<RiArrowDropDownLine size={25} />
 				<DropDown />
 			</div>
-			<div>
+			<div className='relative mt-2'>
 				{dummyPosts.map((post) => (
 					<Post key={post.id} post={post} />
 				))}
