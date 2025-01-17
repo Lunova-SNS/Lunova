@@ -10,7 +10,7 @@ const UploadPage = () => {
 	const [fileList, setFileList] = useState<FileItem[]>([]);
 	const [text, setText] = useState('');
 
-	const { post_id } = useParams<{ post_id?: string }>();
+	const { postId } = useParams<{ postId?: string }>();
 	const maxLength = 150;
 
 	const handleTextCount = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -36,6 +36,8 @@ const UploadPage = () => {
 				const videoElement = document.createElement('video');
 				videoElement.src = preview;
 
+				
+				//이 부분은 위로 올려도 무방할 듯
 				if (videoCount > 0) {
 					// alert('동영상은 최대 1개만 업로드할 수 있습니다.');
 					URL.revokeObjectURL(preview);
@@ -84,14 +86,14 @@ const UploadPage = () => {
 				URL.revokeObjectURL(item.previewURL);
 			});
 		};
-	}, []);
-
+	}, []); //코드 흐름 설명할 수 있게 짜기
 	const Previews = fileList.map((file) => file.previewURL);
 
 	console.log(Previews);
 	console.log(fileList);
 
 	//이미지 삭제 구현, 텍스트 제한 표기, 사진 및 동영상 제한 표기
+	//index는 랜덤한 값으로 수정
 	return (
 		<>
 			<div className='mx-default'>
@@ -99,7 +101,7 @@ const UploadPage = () => {
 					<div className='pb-2'>
 						<BackButton />
 					</div>
-					<h1 className='pb-1 text-xl font-bold'>{post_id ? '게시글 수정' : '게시글 생성'}</h1>
+					<h1 className='pb-1 text-xl font-bold'>{postId ? '게시글 수정' : '게시글 생성'}</h1>
 				</header>
 				<main className='flex justify-center'>
 					<div className='flex min-w-[300px] flex-col items-end'>

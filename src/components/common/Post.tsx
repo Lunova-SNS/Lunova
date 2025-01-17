@@ -1,10 +1,11 @@
 import { CgProfile } from 'react-icons/cg';
 import { AiOutlineHeart } from 'react-icons/ai';
-import PostCarousel from './postCarousel';
+import PostCarousel from '@/components/common/PostCarousel';
 import { useEffect, useRef, useState } from 'react';
 import { AiFillHeart } from 'react-icons/ai';
 import MenuModal from './MenuModal';
 import { CiMenuKebab } from 'react-icons/ci';
+import { useNavigate } from 'react-router-dom';
 // import { FaRegComments } from 'react-icons/fa';
 
 interface PostProps {
@@ -21,6 +22,7 @@ const Post = ({ post }: PostProps) => {
 	const [isHeartClicked, setIsHeartClicked] = useState<boolean>(false);
 	const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
 	const menuRef = useRef<HTMLDivElement>(null);
+
 	const onClickHeart = () => {
 		setIsHeartClicked(!isHeartClicked);
 	};
@@ -41,15 +43,14 @@ const Post = ({ post }: PostProps) => {
 			window.removeEventListener('click', onClick);
 		};
 	}, [isMenuOpened, menuRef]);
-	console.log(isMenuOpened);
 
 	return (
 		<>
-			<div className='h-[492px] rounded-default bg-white'>
-				<div className='mt-3 w-screen'>
+			<div className='mb-3 h-[492px] rounded-default bg-white'>
+				<div className='min-w-full'>
 					{/* 게시글 헤더 부분 */}
-					<div className='mx-[4vw] flex h-[46px] items-center justify-between'>
-						<div className='flex flex-row items-center gap-[2vw]'>
+					<div className='mx-5 flex h-[46px] items-center justify-between'>
+						<div className='flex w-fit flex-row items-center gap-3'>
 							{post.profileImage ? (
 								<img
 									src={post.profileImage}
@@ -61,7 +62,6 @@ const Post = ({ post }: PostProps) => {
 							)}
 							<div className='text-base'>{post.username}</div>
 						</div>
-
 						<div className='relative'>
 							{/* 메뉴 아이콘 */}
 							<div className='relative'>
