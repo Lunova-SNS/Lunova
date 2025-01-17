@@ -1,30 +1,30 @@
 import { BackButton } from '../common/BackButton';
 
 type Props = {
-	isClick: boolean;
-	setIsClick: React.Dispatch<React.SetStateAction<boolean>>;
-	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+	isClicked: boolean;
+	setIsClicked: React.Dispatch<React.SetStateAction<boolean>>;
+	setIsOpened: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const FollowModal = ({ isClick, setIsClick, setIsOpen }: Props) => {
+export const FollowModal = ({ isClicked, setIsClicked, setIsOpened }: Props) => {
 	return (
-		<div onClick={() => setIsOpen(false)} className='absolute left-0 top-0 z-20 min-w-full'>
+		<div onClick={() => setIsOpened(false)} className='absolute left-0 top-0 z-20 min-w-full'>
 			<div
 				onClick={(e) => e.stopPropagation()}
 				className='m-[20px] rounded-default bg-white p-[14px]'
 			>
-				<BackButton overrideBack fallbackUrl='#' onClick={() => setIsOpen(false)} />
+				<BackButton overrideBack fallbackUrl='#' onClick={() => setIsOpened(false)} />
 
 				<div className='my-[14px] flex justify-center gap-3'>
 					<button
-						onClick={() => setIsClick(true)}
-						className={`flex min-h-[36px] flex-grow items-center justify-center rounded-[5px] duration-200 ${isClick && 'bg-[#B6D4F6] bg-opacity-80'} text-base font-semibold hover:bg-[#B6D4F6] hover:bg-opacity-80`}
+						onClick={() => setIsClicked(true)}
+						className={`flex min-h-[36px] flex-grow items-center justify-center rounded-[5px] duration-200 ${isClicked && 'bg-[#B6D4F6] bg-opacity-80'} text-base font-semibold hover:bg-[#B6D4F6] hover:bg-opacity-80`}
 					>
 						팔로워
 					</button>
 					<button
-						onClick={() => setIsClick(false)}
-						className={`flex min-h-[36px] flex-grow items-center justify-center rounded-[5px] duration-200 ${!isClick && 'bg-[#B6D4F6] bg-opacity-80'} text-base font-semibold hover:bg-[#B6D4F6] hover:bg-opacity-80`}
+						onClick={() => setIsClicked(false)}
+						className={`flex min-h-[36px] flex-grow items-center justify-center rounded-[5px] duration-200 ${!isClicked && 'bg-[#B6D4F6] bg-opacity-80'} text-base font-semibold hover:bg-[#B6D4F6] hover:bg-opacity-80`}
 					>
 						팔로잉
 					</button>
@@ -46,7 +46,7 @@ export const FollowModal = ({ isClick, setIsClick, setIsOpen }: Props) => {
 							</div>
 
 							<button className='h-[20px] w-[54px] rounded-[4px] bg-[#9DC6F5] text-[10px] font-semibold active:scale-95'>
-								{isClick ? '팔로워 삭제' : '팔로우 취소'}
+								{isClicked ? '팔로워 삭제' : '팔로우 취소'}
 							</button>
 						</li>
 					))}

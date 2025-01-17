@@ -4,14 +4,16 @@ import { MdPhotoCamera } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 
 export const UserInfoPage = () => {
-	const [isOpen, setIsOpen] = useState<boolean>(false);
-	const [isClick, setIsClick] = useState<boolean>(true);
+	const [isOpened, setIsOpened] = useState<boolean>(false);
+	const [isClicked, setIsClicked] = useState<boolean>(true);
 	const navigate = useNavigate();
 
 	return (
 		<div className='relative px-[20px] py-[18px]'>
 			{/* 팔로워, 팔로잉 모달 */}
-			{isOpen && <FollowModal isClick={isClick} setIsClick={setIsClick} setIsOpen={setIsOpen} />}
+			{isOpened && (
+				<FollowModal isClicked={isClicked} setIsClicked={setIsClicked} setIsOpened={setIsOpened} />
+			)}
 
 			{/* 유저 정보 프로필 */}
 			<section className='mb-[26px] flex min-h-[136px] justify-start rounded-default bg-white p-[20px]'>
@@ -49,8 +51,8 @@ export const UserInfoPage = () => {
 					<div className='flex flex-col items-center justify-center text-[10px] font-semibold'>
 						<button
 							onClick={() => {
-								setIsOpen(true);
-								setIsClick(true);
+								setIsOpened(true);
+								setIsClicked(true);
 							}}
 							type='button'
 							className='min-h-[38px] min-w-[48px] rounded-[5px] bg-subColor'
@@ -63,8 +65,8 @@ export const UserInfoPage = () => {
 					<div className='flex flex-col items-center justify-center text-[10px] font-semibold'>
 						<button
 							onClick={() => {
-								setIsOpen(true);
-								setIsClick(false);
+								setIsOpened(true);
+								setIsClicked(false);
 							}}
 							type='button'
 							className='min-h-[38px] min-w-[48px] rounded-[5px] bg-subColor'
