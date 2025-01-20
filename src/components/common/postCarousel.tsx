@@ -1,4 +1,5 @@
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { EmblaOptionsType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 import Fade from 'embla-carousel-fade';
@@ -17,14 +18,15 @@ const PostCarousel: React.FC<PropType> = (props) => {
 		<div className='embla'>
 			<div className='embla__viewport' ref={emblaRef}>
 				<div className='embla__container'>
-					{slides.map((index) => (
-						<div className='embla__slide' key={index}>
-							<img className='embla__slide__img' src={index} alt='Your alt text' />
+					{slides.map((file) => (
+						<div className='embl__slide' key={uuidv4()}>
+							<div className='embla__slide'>
+								<img className='embla__slide__img h-[360] w-full' src={file} alt='Your alt text' />
+							</div>
 						</div>
 					))}
 				</div>
 			</div>
-			<div className='embla__controls'></div>
 		</div>
 	);
 };
