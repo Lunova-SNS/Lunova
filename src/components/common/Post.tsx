@@ -5,10 +5,9 @@ import { useEffect, useRef, useState } from 'react';
 import { AiFillHeart } from 'react-icons/ai';
 import MenuModal from './MenuModal';
 import { CiMenuKebab } from 'react-icons/ci';
-import { useNavigate } from 'react-router-dom';
 // import { FaRegComments } from 'react-icons/fa';
 
-interface PostProps {
+export interface PostProps {
 	post: {
 		id: number; // 게시물 ID
 		username: string; // 사용자 이름

@@ -4,9 +4,14 @@ import useEmblaCarousel from 'embla-carousel-react';
 import Fade from 'embla-carousel-fade';
 import { NextButton, PrevButton, usePrevNextButtons } from '@/components/uploadPage/CarouselArrow';
 import '@/assets/carousel/uploadCarousel.css';
-
+import { v4 as uuidv4 } from 'uuid';
+interface FileObj {
+	fileObject: File;
+	previewURL: string;
+	type: string;
+}
 type PropType = {
-	slides: string[];
+	slides: FileObj[];
 	options?: EmblaOptionsType;
 };
 
@@ -21,19 +26,27 @@ const UploadCarousel: React.FC<PropType> = (props) => {
 		<div className='embl'>
 			<div className='embl__viewport' ref={emblaRef}>
 				<div className='embl__container'>
-					{slides.map((index) => (
-						<div className='embl__slide' key={index}>
-							<img className='embl__slide__img' src={index} alt='Your alt text' />
+					{slides.map((file) => (
+						<div className='embl__slide' key={uuidv4()}>
+							{file.type === 'image' ? (
+								<img
+									className='embl__slide__img'
+									src={file.previewURL}
+									alt='첨부하신 이미지의 미리보기를 볼 수 없습니다.'
+								/>
+							) : (
+								<video className='embl__slide__img' autoPlay muted src={file.previewURL} />
+							)}
 						</div>
 					))}
 				</div>
-			</div>
-			<div className='embl__controls'>
-				<div className='embl__buttons'>
-					<PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
-					<NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
+				<div className='embl__controls'>
+					<div className='embl__buttons'>
+						<PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
+						<NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
+					</div>
+					{/* <div className='embla__dots'></div> */}
 				</div>
-				{/* <div className='embla__dots'></div> */}
 			</div>
 		</div>
 	);
