@@ -92,7 +92,7 @@ const Post = ({ post }: PostProps) => {
 							<div className='flex gap-3'>
 								<div onClick={onClickHeart}>
 									{isHeartClicked ? (
-										<AiFillHeart size={20} color='#E0786D' />
+										<AiFillHeart size={20} color='#F95454' />
 									) : (
 										<AiOutlineHeart size={20} />
 									)}

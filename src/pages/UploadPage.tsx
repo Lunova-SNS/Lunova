@@ -1,10 +1,10 @@
 import { BiPlus } from 'react-icons/bi';
 import { useEffect, useState } from 'react';
-import { FileItem } from '@/types/uploadPage';
 import { Button } from '@/components/common/Button';
 import { BackButton } from '@/components/common/BackButton';
 import { useParams } from 'react-router-dom';
 import UploadCarousel from '@/components/uploadPage/UploadCarousel';
+import { useToastStore } from '@/stores/useToastStore';
 
 export interface FileObj {
 	fileObject: File;
@@ -13,11 +13,12 @@ export interface FileObj {
 }
 
 const UploadPage = () => {
-	const [fileList, setFileList] = useState<FileItem[]>([]);
+	const [fileList, setFileList] = useState<FileObj[]>([]);
 	const [text, setText] = useState('');
-
 	const { postId } = useParams<{ postId?: string }>();
 	const maxLength = 150;
+
+	const { showToast } = useToastStore();
 
 	const handleTextCount = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 		setText(e.target.value);
@@ -40,12 +41,13 @@ const UploadPage = () => {
 			//동영상 50mb, 이미지 5mb
 			if (fileType === 'video') {
 				if (videoCount >= 1 || fileSizeMB > 50) {
+					showToast({
+						message: '사진 첨부 제한에 도달했습니다.',
+						type: 'success',
+					});
 					URL.revokeObjectURL(preview);
 					continue;
 				}
-
-				// const videoElement = document.createElement('video');
-				// videoElement.src = preview;
 
 				newFileList.push({ fileObject: files[i], previewURL: preview, type: fileType });
 				videoCount += 1;
@@ -53,6 +55,10 @@ const UploadPage = () => {
 				//image 파일 처리
 				if (imageCount >= 5 || fileSizeMB > 10) {
 					URL.revokeObjectURL(preview);
+					showToast({
+						message: '사진 첨부 제한에 도달했습니다.',
+						type: 'success',
+					});
 					continue;
 				}
 				newFileList.push({
@@ -63,14 +69,9 @@ const UploadPage = () => {
 				imageCount += 1;
 			}
 		}
+		console.log(newFileList);
 		setFileList((prev) => [...prev, ...newFileList]);
 	};
-
-	// const deleteFile = (index: number) => {
-	// 	const temFilelist = [...fileList];
-	// 	temFilelist.splice(index, 1);
-	// 	setFileList(temFilelist);
-	// };
 
 	useEffect(() => {
 		return () => {
@@ -78,11 +79,9 @@ const UploadPage = () => {
 				URL.revokeObjectURL(item.previewURL);
 			});
 		};
-	}, []); //코드 흐름 설명할 수 있게 짜기
+	}, []);
 
 	console.log(fileList);
-
-	//이미지 삭제 구현, 텍스트 제한 표기, 사진 및 동영상 제한 표기
 
 	return (
 		<>
@@ -102,7 +101,6 @@ const UploadPage = () => {
 							>
 								<BiPlus color='white' size={20} />
 							</label>
-
 							<input
 								type='file'
 								name='file'
