@@ -13,7 +13,7 @@ export default {
 					200: '#D9D9D9', // notification, profile
 					300: '#A4A4A4', // input border
 				},
-				error: '#E0786D', // 밝은 빨간색
+				error: '#F95454', // 밝은 빨간색
 				modalBack: '#24242480', // 모달 배경
 			},
 			fontFamily: {

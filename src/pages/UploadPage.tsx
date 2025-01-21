@@ -2,7 +2,7 @@ import { BiPlus } from 'react-icons/bi';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/common/Button';
 import { BackButton } from '@/components/common/BackButton';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import UploadCarousel from '@/components/uploadPage/UploadCarousel';
 import { useToastStore } from '@/stores/useToastStore';
 
@@ -15,7 +15,6 @@ export interface FileObj {
 const UploadPage = () => {
 	const [fileList, setFileList] = useState<FileObj[]>([]);
 	const [text, setText] = useState('');
-	const navigate = useNavigate();
 	const { postId } = useParams<{ postId?: string }>();
 	const maxLength = 150;
 
@@ -44,10 +43,7 @@ const UploadPage = () => {
 				if (videoCount >= 1 || fileSizeMB > 50) {
 					showToast({
 						message: '사진 첨부 제한에 도달했습니다.',
-						color: 'bg-subColor',
-						onClick: () => {
-							navigate('/');
-						},
+						type: 'success',
 					});
 					URL.revokeObjectURL(preview);
 					continue;
@@ -61,10 +57,7 @@ const UploadPage = () => {
 					URL.revokeObjectURL(preview);
 					showToast({
 						message: '사진 첨부 제한에 도달했습니다.',
-						color: 'bg-subColor',
-						onClick: () => {
-							navigate('/');
-						},
+						type: 'success',
 					});
 					continue;
 				}
