@@ -8,6 +8,7 @@ interface InputProps {
 	disabled?: boolean;
 	className?: string;
 	errorMessage?: any;
+	successMessage?: any;
 	isValid?: boolean;
 	minWidth?: string;
 	minHeight?: string;
@@ -25,6 +26,7 @@ export const Input: React.FC<InputProps> = ({
 	disabled = false,
 	className = '',
 	errorMessage,
+	successMessage,
 	isValid = true,
 	minWidth = 'min-w-full',
 	minHeight = 'min-h-[36px]',
@@ -37,7 +39,7 @@ export const Input: React.FC<InputProps> = ({
 
 	const borderStyles = isValid
 		? 'border-gray-300 focus:ring-1 focus:ring-blue-500'
-		: 'border-error focus:ring-1 focus:ring-error';
+		: 'border-[#E0786D] focus:ring-1 focus:ring-[#E0786D]';
 
 	const disabledStyles = disabled ? 'bg-gray-200 cursor-not-allowed' : `${backgroundColor}`;
 
@@ -56,9 +58,15 @@ export const Input: React.FC<InputProps> = ({
 			/>
 
 			{!isValid && errorMessage && (
-				<p className='absolute mt-[2px] flex items-center text-xs font-light text-error'>
+				<p className='absolute mt-[2px] flex items-center text-xs font-light text-[#E0786D]'>
 					<PiAsteriskSimpleBold size='10px' />
 					<span className='ml-[2px]'>{errorMessage}</span>
+				</p>
+			)}
+			{isValid && successMessage && (
+				<p className='absolute mt-[2px] flex items-center text-xs font-light text-blue-500'>
+					<PiAsteriskSimpleBold size='10px' />
+					<span className='ml-[2px]'>{successMessage}</span>
 				</p>
 			)}
 		</>
