@@ -23,11 +23,13 @@ deploy:
   stage: deploy
   script:
     - echo "Starting deployment"
-    - ssh kdt@34.64.75.50 "~/frontend/auraSphere && git pull origin dev && npm install && npm run
+    - ssh kdt@34.64.75.50 "cd ~/frontend/auraSphere && git pull origin dev && npm install && npm run
       build"
   only:
     - build
     - main
+  tags:
+    - frontend
   environment:
     name: production
     url: http://34.64.75.50
