@@ -42,7 +42,7 @@ const Post = ({ post }: PostProps) => {
 			window.removeEventListener('click', onClick);
 		};
 	}, [isMenuOpened, menuRef]);
-
+	console.log(post.postImages);
 	return (
 		<>
 			<div className='mb-3 h-[492px] rounded-default bg-white'>

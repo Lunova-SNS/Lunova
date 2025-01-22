@@ -11,7 +11,7 @@ const MenuModal = ({ isMenuOpened, setIsMenuOpened, menuRef }: MenuModalProps) =
 	const isMenuClicked = () => {
 		setIsMenuOpened(!isMenuOpened);
 	};
-	const { postId } = useParams<{ post_id?: string }>();
+	const { postId } = useParams<{ postId?: string }>();
 	return (
 		<>
 			<div

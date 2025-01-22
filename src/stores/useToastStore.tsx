@@ -17,7 +17,6 @@ interface ToastState {
 	isVisible: boolean;
 	onClick?: MouseEventHandler<HTMLDivElement> | undefined;
 	showToast: (toast: { message: string; type: 'error' | 'success'; onClick?: () => void }) => void;
-
 	hideToast: () => void;
 }
 
