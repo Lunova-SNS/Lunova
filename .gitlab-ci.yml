@@ -28,7 +28,8 @@ deploy:
     - echo "$SSH_KEY" > /tmp/ssh_key
     - chmod 600 /tmp/ssh_key
     # 빌드 결과물 전송
-    - scp -i /tmp/ssh_key dist/ kdt@34.64.75.50:~/frontend/auraSphere/dist
+    - scp -i /tmp/ssh_key -o StrictHostKeyChecking=no dist/
+      kdt@34.64.75.50:~/frontend/auraSphere/dist
     # 원격 서버에서 빌드 결과물로 배포 준비
     # - ssh kdt@34.64.75.50 " cd ~/frontend/auraSphere && npm install && pm2 restart app "
   dependencies:
