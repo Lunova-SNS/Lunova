@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import MainPage from '@/pages/MainPage';
 import CommonLayout from './layouts/CommonLayout';
 import MainLayout from './layouts/MainLayout';
@@ -7,8 +7,20 @@ import { SignUpPage } from './pages/SignUpPage';
 import { SettingPage } from './pages/SettingPage';
 import { UserInfoPage } from './pages/UserInfoPage';
 import UploadPage from './pages/UploadPage';
+import { useEffect } from 'react';
 
 function App() {
+	const location = useLocation();
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (location.pathname === '/login' || location.pathname === '/signup') {
+			navigate(location.pathname, { replace: true });
+		} else {
+			console.log('현재 경로:', location.pathname);
+		}
+	}, [location.pathname, navigate]);
+
 	return (
 		<Routes>
 			<Route element={<CommonLayout />}>
