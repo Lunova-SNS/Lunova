@@ -1,6 +1,7 @@
 import logo from '@/assets/images/HeaderLogo.svg';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
+import { PasswordModal } from '@/components/loginPage/PasswordModal';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -16,6 +17,7 @@ export const LoginPage = () => {
 	const [emailChecked, setemailChecked] = useState<string>('asd@asd.com');
 	// @ts-expect-error expected behavior
 	const [passwordChecked, setPasswordChecked] = useState<string>('Qkraltjs819!');
+	const [isOpened, setIsOpened] = useState<boolean>(false);
 	const navigate = useNavigate();
 	// @ts-expect-error expected behavior
 	const onSubmit = (data) => {
@@ -29,12 +31,14 @@ export const LoginPage = () => {
 			return;
 		}
 		alert('로그인 성공');
-		navigate('/');
+		navigate('/', { replace: true });
 		return data;
 	};
 
 	return (
-		<div className='mx-default flex flex-col items-center'>
+		<div className='relative flex flex-col items-center px-[30px]'>
+			{isOpened && <PasswordModal setIsOpened={setIsOpened} />}
+
 			{/* AuraSphere 로고 */}
 			<img className='w-full pb-[43px] pl-4 pt-[30px]' src={logo} alt='AuraSphereLogo' />
 
@@ -84,13 +88,21 @@ export const LoginPage = () => {
 				네이버
 			</button>
 
-			<button type='button' className='mb-[19px] text-base font-semibold'>
+			<button
+				onClick={() => setIsOpened(true)}
+				type='button'
+				className='mb-[19px] text-base font-semibold'
+			>
 				비밀번호를 잊으셨나요?
 			</button>
 
 			<p className='text-base font-semibold'>
 				계정이 없으신가요?{' '}
-				<button onClick={() => navigate('/signup')} type='button' className='text-[#4B8CD7]'>
+				<button
+					onClick={() => navigate('/signup', { replace: true })}
+					type='button'
+					className='text-[#4B8CD7]'
+				>
 					회원가입하기
 				</button>
 			</p>

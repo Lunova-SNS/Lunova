@@ -84,7 +84,6 @@ export const SettingPage = () => {
 						<div className='text-[16px] font-semibold'>비밀번호 재설정</div>
 					</div>
 
-					{/* 프로필 사진 및 닉네임 설정 */}
 					<div className='my-[14px] flex flex-col items-center justify-between'>
 						<div className='mb-[16px] min-w-full'>
 							<Input type='password' placeholder='현재 비밀번호' backgroundColor='bg-white' />

@@ -44,7 +44,7 @@ export const SignUpPage = () => {
 
 		watch('numberCheck') && sectionsCount === 0
 			? setSectionsCount((prev) => prev + 1)
-			: navigate('#');
+			: navigate('#', { replace: true });
 
 		return data;
 	};
@@ -56,9 +56,10 @@ export const SignUpPage = () => {
 		}
 
 		setIsNickNameChecked(true);
-		watch('nickName') && sectionsCount === 1 ? navigate('/login') : navigate('#');
+		watch('nickName') && sectionsCount === 1
+			? navigate('/login', { replace: true })
+			: navigate('#', { replace: true });
 		alert('회원가입에 성공하셨습니다.');
-
 		return data;
 	};
 
