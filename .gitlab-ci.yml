@@ -33,6 +33,7 @@ deploy:
     - build # build 단계의 아티팩트를 가져옵니다
   only:
     - main # main 브랜치에 코드가 머지될 때만 실행
+    - build
   tags:
     - frontend
   environment:
