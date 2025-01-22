@@ -9,9 +9,9 @@ build:
     - echo "Building the project"
     - echo "Installing dependencies"
     - sudo apt-get update && apt-get install -y nodejs npm
-    - npm install 
+    - bash -l -c 'npm install' 
     - echo "Building the project"
-    - npm run build
+    - bash -l -c 'npm run build'
   only:
     - dev
   tags:
