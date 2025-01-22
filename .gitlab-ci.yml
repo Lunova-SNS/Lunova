@@ -1,4 +1,3 @@
-
 stages:
   - build
   - deploy
@@ -11,6 +10,7 @@ build:
     - echo "Installing dependencies"
     - npm install
     - echo "Building the project"
+    - node -v
     - npm run build
   only:
     - build
@@ -23,9 +23,10 @@ deploy:
   stage: deploy
   script:
     - echo "Starting deployment"
-    - ssh kdt@34.64.75.50 "~/frontend/auraSphere && git pull origin dev && npm install && npm run build" 
+    - ssh kdt@34.64.75.50 "~/frontend/auraSphere && git pull origin dev && npm install && npm run
+      build"
   only:
-    - build 
+    - build
     - main
   environment:
     name: production
