@@ -2,8 +2,8 @@ import React from 'react';
 import { EmblaOptionsType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 import Fade from 'embla-carousel-fade';
-import { NextButton, PrevButton, usePrevNextButtons } from '@/components/uploadPage/CarouselArrow';
-import '@/assets/carousel/uploadCarousel.css';
+import { NextButton, PrevButton, usePrevNextButtons } from '@/components/common/PostCarouselArrow';
+import '@/assets/carousel/postCaroucel.css';
 import { v4 as uuidv4 } from 'uuid';
 interface FileObj {
 	fileObject: File;
@@ -45,7 +45,6 @@ const UploadCarousel: React.FC<PropType> = (props) => {
 						<PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
 						<NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
 					</div>
-					{/* <div className='embla__dots'></div> */}
 				</div>
 			</div>
 		</div>

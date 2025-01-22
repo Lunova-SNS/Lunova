@@ -14,7 +14,6 @@ export const useDotButton = (
 	const [selectedIndex, setSelectedIndex] = useState(0);
 	const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
 
-	// Dot button click handler
 	const onDotButtonClick = useCallback(
 		(index: number) => {
 			if (!emblaApi) return;
@@ -24,7 +23,6 @@ export const useDotButton = (
 		[emblaApi, onButtonClick]
 	);
 
-	// Initialize scrollSnaps and selectedIndex when emblaApi is available
 	const onInit = useCallback((emblaApi: EmblaCarouselType) => {
 		setScrollSnaps(emblaApi.scrollSnapList());
 	}, []);
@@ -36,22 +34,10 @@ export const useDotButton = (
 	useEffect(() => {
 		if (!emblaApi) return;
 
-		// Initialize once when emblaApi is ready
 		onInit(emblaApi);
 		onSelect(emblaApi);
 
-		// Only register event listeners once
-		const handleReInit = () => {
-			onInit(emblaApi);
-			onSelect(emblaApi);
-		};
-
-		emblaApi.on('reInit', handleReInit).on('select', onSelect);
-
-		// Cleanup event listeners on unmount or when emblaApi changes
-		return () => {
-			emblaApi.off('reInit', handleReInit).off('select', onSelect);
-		};
+		emblaApi.on('reInit', onInit).on('reInit', onSelect).on('select', onSelect);
 	}, [emblaApi, onInit, onSelect]);
 
 	return {
