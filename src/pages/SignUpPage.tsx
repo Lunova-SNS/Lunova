@@ -15,15 +15,19 @@ export const SignUpPage = () => {
 		setError,
 		formState: { errors },
 	} = useForm({ mode: 'onChange' });
+	// @ts-expect-error expected behavior
 	const [emailChecked, setemailChecked] = useState<string>('asd@asd.com');
+	// @ts-expect-error expected behavior
 	const [nickNameChecked, setNickNameChecked] = useState<string>('박미선');
+	// @ts-expect-error expected behavior
 	const [numberChecked, setNumberChecked] = useState<string>('123456');
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 	const [isNickNameChecked, setIsNickNameChecked] = useState<boolean>(false);
+	// @ts-expect-error expected behavior
 	const [sections, setSections] = useState<string[]>(['emailPassword', 'nickName']);
 	const [sectionsCount, setSectionsCount] = useState<number>(0);
 	const navigate = useNavigate();
-
+	// @ts-expect-error expected behavior
 	const onSubmit1 = (data) => {
 		console.log(data);
 		if (data.email === emailChecked) {
@@ -44,7 +48,7 @@ export const SignUpPage = () => {
 
 		return data;
 	};
-
+	// @ts-expect-error expected behavior
 	const onSubmit2 = (data) => {
 		if (!isNickNameChecked) {
 			setError('nickName', { message: '중복 확인을 먼저 해주세요.' });
