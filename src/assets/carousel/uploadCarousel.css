@@ -68,9 +68,7 @@
 	justify-content: center;
 	pointer-events: all; /* 버튼 클릭 가능하도록 */
 }
-.embl__button:disabled {
-	color: var(--detail-high-contrast);
-}
+
 .embl__button__svg {
 	width: 35%;
 	height: 35%;

@@ -14,7 +14,7 @@ export default function Header() {
 	return (
 		<>
 			<div className='flex items-center justify-between bg-white'>
-				<div className='mb-3 ml-default mt-1'>
+				<div className='mb-3 ml-default mt-1 cursor-pointer'>
 					<img
 						src={Logo}
 						alt='AuraSphere'
@@ -33,12 +33,14 @@ export default function Header() {
 						type='button'
 						className='cursor-pointer'
 					/>
-					<VscSettings
-						size={24}
-						onClick={() => {
-							navigate('/setting');
-						}}
-					/>
+					<span className='cursor-pointer'>
+						<VscSettings
+							size={24}
+							onClick={() => {
+								navigate('/setting');
+							}}
+						/>
+					</span>
 				</div>
 			</div>
 			<Notification isNotiOpened={isNotiOpened} setIsNotiOpened={setIsNotiOpened} />

@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import useDetectClose from '@/components/MainPage/useDetectClose';
+import useDetectClose from '@/components/mainPage/useDetectClose';
 
 const DropDown = () => {
 	const dropDownRef = useRef<HTMLUListElement>(null);

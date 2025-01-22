@@ -49,7 +49,7 @@ const Post = ({ post }: PostProps) => {
 				<div className='min-w-full'>
 					{/* 게시글 헤더 부분 */}
 					<div className='mx-5 flex h-[46px] items-center justify-between'>
-						<div className='flex w-fit flex-row items-center gap-3'>
+						<div className='flex w-fit cursor-pointer flex-row items-center gap-3'>
 							{post.profileImage ? (
 								<img
 									src={post.profileImage}
@@ -63,7 +63,7 @@ const Post = ({ post }: PostProps) => {
 						</div>
 						<div className='relative'>
 							{/* 메뉴 아이콘 */}
-							<div className='relative'>
+							<div className='relative cursor-pointer'>
 								<CiMenuKebab
 									size={20}
 									onClick={(e) => {
@@ -88,9 +88,9 @@ const Post = ({ post }: PostProps) => {
 					</div>
 					<div className='h-[84px]'>
 						<div className='mx-[20px] mt-4 flex flex-row justify-between'>
-							<div className='text-base font-bold'>{post.username}</div>
+							<div className='cursor-pointer text-base font-bold'>{post.username}</div>
 							<div className='flex gap-3'>
-								<div onClick={onClickHeart}>
+								<div onClick={onClickHeart} className='cursor-pointer'>
 									{isHeartClicked ? (
 										<AiFillHeart size={20} color='#F95454' />
 									) : (
