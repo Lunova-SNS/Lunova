@@ -8,6 +8,7 @@ build:
   script:
     - echo "Building the project"
     - echo "Installing dependencies"
+    - apt-get update && apt-get install -y nodejs npm
     - npm install 
     - echo "Building the project"
     - npm run build
