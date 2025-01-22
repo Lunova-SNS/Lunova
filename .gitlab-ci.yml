@@ -1,1 +1,32 @@
 
+stages:
+  - build
+  - deploy
+
+# 빌드 단계
+build:
+  stage: build
+  script:
+    - echo "Building the project"
+    - echo "Installing dependencies"
+    - npm install
+    - echo "Building the project"
+    - npm run build
+  only:
+    - build
+    - main
+  tags:
+    - frontend
+
+# 배포 단계
+deploy:
+  stage: deploy
+  script:
+    - echo "Starting deployment"
+    - ssh kdt@34.64.75.50 "~/frontend/auraSphere && git pull origin dev && npm install && npm run build" 
+  only:
+    - build 
+    - main
+  environment:
+    name: production
+    url: http://34.64.75.50
