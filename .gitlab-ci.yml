@@ -6,15 +6,16 @@ stages:
 build:
   stage: build
   script:
-    - echo "Building the project"
     - echo "Installing dependencies"
     - npm install
     - echo "Building the project"
-    - node -v
     - npm run build
+  artifacts:
+    paths:
+      - dist/ # 빌드 결과물 폴더
   only:
-    - build
     - main
+    - build
   tags:
     - frontend
 
@@ -23,11 +24,14 @@ deploy:
   stage: deploy
   script:
     - echo "Starting deployment"
-    - ssh kdt@34.64.75.50 "cd ~/frontend/auraSphere && git pull origin dev && npm install && npm run
-      build"
+    # 빌드 결과물 전송
+    - scp -r dist/ kdt@34.64.75.50:~/frontend/auraSphere/dist
+    # 원격 서버에서 빌드 결과물로 배포 준비
+    # - ssh kdt@34.64.75.50 " cd ~/frontend/auraSphere && npm install && pm2 restart app "
+  dependencies:
+    - build # build 단계의 아티팩트를 가져옵니다
   only:
-    - build
-    - main
+    - main # main 브랜치에 코드가 머지될 때만 실행
   tags:
     - frontend
   environment:
