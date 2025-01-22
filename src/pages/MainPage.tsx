@@ -1,5 +1,5 @@
 import Post from '@/components/common/Post';
-import DropDown from '@/components/mainPage/DropDown';
+import DropDown from '@/components/MainPage/DropDown';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 
 export default function MainPage() {
