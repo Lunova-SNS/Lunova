@@ -9,9 +9,9 @@ build:
     - echo "Installing dependencies"
     - npm install 
     - echo "Building the project"
-    - npm run build 
+    - npm run build
   only:
-    - dev 
+    - dev
 
 # 배포 단계
 deploy:
@@ -23,4 +23,5 @@ deploy:
     - dev 
     - main
   environment:
+    name: production
     url: http://34.64.75.50
