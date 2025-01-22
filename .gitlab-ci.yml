@@ -6,12 +6,15 @@ stages:
 build:
   stage: build
   script:
+    - echo "Building the project"
     - echo "Installing dependencies"
     - npm install 
     - echo "Building the project"
     - npm run build
   only:
     - dev
+  tag:
+    - frontend
 
 # 배포 단계
 deploy:
