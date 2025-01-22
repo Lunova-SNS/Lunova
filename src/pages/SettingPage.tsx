@@ -8,6 +8,7 @@ import { HiOutlinePhotograph } from 'react-icons/hi';
 import { RiLockPasswordLine } from 'react-icons/ri';
 
 export const SettingPage = () => {
+	// @ts-expect-error expected behavior
 	const [imgFile, setImgFile] = useState<File>();
 	const [previewImg, setPreviewImg] = useState<string>('');
 
