@@ -13,6 +13,7 @@ build:
   artifacts:
     paths:
       - dist/ # 빌드 결과물 폴더
+    expire_in: 1 hour # 아티팩트 보존 시간 설정
   only:
     - main
     - build
