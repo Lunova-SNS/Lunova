@@ -25,6 +25,8 @@ deploy:
   stage: deploy
   script:
     - echo "Starting deployment"
+    - echo "$SSH_KEY"
+    - echo "$SSH_KEY" > /tmp/ssh_key
     # 빌드 결과물 전송
     - scp -r dist/ kdt@34.64.75.50:~/frontend/auraSphere/dist
     # 원격 서버에서 빌드 결과물로 배포 준비
