@@ -40,9 +40,9 @@
 	pointer-events: none; /* 버튼 외부 영역 클릭 방지 */
 }
 .embl__buttons {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 200px;
+	display: flex;
+	justify-content: space-between;
+	min-width: 100%;
 	align-items: center;
 	color: #9dc6f5;
 }

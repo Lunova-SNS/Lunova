@@ -5,6 +5,7 @@ import { BackButton } from '@/components/common/BackButton';
 import { useParams } from 'react-router-dom';
 import UploadCarousel from '@/components/uploadPage/UploadCarousel';
 import { useToastStore } from '@/stores/useToastStore';
+import { client } from '@/axios/instance';
 
 export interface FileObj {
 	fileObject: File;
@@ -12,15 +13,19 @@ export interface FileObj {
 	type: string;
 }
 
+interface Payload {
+	fileName: string;
+	contentType: string;
+}
+
 const UploadPage = () => {
 	const [fileList, setFileList] = useState<FileObj[]>([]);
 	const [text, setText] = useState('');
 	const { postId } = useParams<{ postId?: string }>();
 	const maxLength = 150;
-
-	const { showToast } = useToastStore();
-
+	const { showToast } = useToastStore(); // toast 컴포넌트 사용
 	const handleTextCount = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+		// 텍스트 카운트
 		setText(e.target.value);
 	};
 
@@ -42,7 +47,7 @@ const UploadPage = () => {
 			if (fileType === 'video') {
 				if (videoCount >= 1 || fileSizeMB > 50) {
 					showToast({
-						message: '사진 첨부 제한에 도달했습니다.',
+						message: '동영상 첨부 제한에 도달했습니다.',
 						type: 'success',
 					});
 					URL.revokeObjectURL(preview);
@@ -80,6 +85,25 @@ const UploadPage = () => {
 			});
 		};
 	}, []);
+
+	const handleFileUpload = async () => {
+		try {
+			if (fileList.length === 0) {
+				showToast({
+					message: '사진을 한 장 이상 첨부해주세요!',
+					type: 'error',
+				});
+				return;
+			}
+
+			const payload = fileList.map((file) => {
+				return { fileName: file.fileObject.name, contentType: file.fileObject.type };
+			});
+
+			const response = await client.post('/s3/url', payload);
+			console.log(response.data);
+		} catch (error) {}
+	};
 
 	console.log(fileList);
 
@@ -134,7 +158,7 @@ const UploadPage = () => {
 								{maxLength - text.length} / {maxLength}
 							</div>
 						</div>
-						<Button children={'업로드'}></Button>
+						<Button children={'업로드'} onClick={handleFileUpload}></Button>
 					</div>
 				</main>
 			</div>

@@ -4,8 +4,12 @@ import { EmblaOptionsType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 import Fade from 'embla-carousel-fade';
 import '@/assets/carousel/postCaroucel.css';
-import { NextButton, PrevButton, usePrevNextButtons } from '@/components/common/PostCarouselArrow';
-// import { DotButton, useDotButton } from '@/components/common/useDotButton';
+import {
+	NextButton,
+	PrevButton,
+	usePrevNextButtons,
+} from '@/components/common/post/PostCarouselArrow';
+
 type PropType = {
 	slides: string[];
 	options?: EmblaOptionsType;
@@ -17,7 +21,6 @@ const PostCarousel: React.FC<PropType> = (props) => {
 
 	const { prevBtnDisabled, nextBtnDisabled, onPrevButtonClick, onNextButtonClick } =
 		usePrevNextButtons(emblaApi);
-	// const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
 
 	return (
 		<div className='embla'>

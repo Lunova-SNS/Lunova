@@ -2,8 +2,12 @@ import React from 'react';
 import { EmblaOptionsType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 import Fade from 'embla-carousel-fade';
-import { NextButton, PrevButton, usePrevNextButtons } from '@/components/common/PostCarouselArrow';
-import '@/assets/carousel/postCaroucel.css';
+import {
+	NextButton,
+	PrevButton,
+	usePrevNextButtons,
+} from '@/components/common/post/PostCarouselArrow';
+import '@/assets/carousel/uploadCarousel.css';
 import { v4 as uuidv4 } from 'uuid';
 interface FileObj {
 	fileObject: File;

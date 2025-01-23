@@ -2,6 +2,7 @@ import { PiAsteriskSimpleBold } from 'react-icons/pi';
 
 interface InputProps {
 	type?: 'text' | 'password' | 'email';
+	id?: string;
 	value?: string | number;
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	placeholder?: string;
@@ -20,6 +21,7 @@ interface InputProps {
 
 export const Input: React.FC<InputProps> = ({
 	type = 'text',
+	id,
 	value,
 	onChange,
 	placeholder = '',
@@ -48,6 +50,7 @@ export const Input: React.FC<InputProps> = ({
 	return (
 		<>
 			<input
+				id={id}
 				type={type}
 				value={value}
 				onChange={onChange}
