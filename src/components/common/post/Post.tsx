@@ -1,11 +1,11 @@
 import { CgProfile } from 'react-icons/cg';
 import { AiOutlineHeart } from 'react-icons/ai';
-import PostCarousel from '@/components/common/PostCarousel';
+import PostCarousel from '@/components/common/post/PostCarousel';
 import { useEffect, useRef, useState } from 'react';
 import { AiFillHeart } from 'react-icons/ai';
 import MenuModal from './MenuModal';
 import { CiMenuKebab } from 'react-icons/ci';
-// import { FaRegComments } from 'react-icons/fa';
+import { FaRegComments } from 'react-icons/fa';
 
 export interface PostProps {
 	post: {
@@ -15,9 +15,10 @@ export interface PostProps {
 		postImages: string[]; // 게시물 이미지 배열
 		text: string; // 게시물 텍스트
 	};
+	onClickComment: () => void;
 }
 
-const Post = ({ post }: PostProps) => {
+const Post = ({ post, onClickComment }: PostProps) => {
 	const [isHeartClicked, setIsHeartClicked] = useState<boolean>(false);
 	const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
 	const menuRef = useRef<HTMLDivElement>(null);
@@ -25,9 +26,11 @@ const Post = ({ post }: PostProps) => {
 	const onClickHeart = () => {
 		setIsHeartClicked(!isHeartClicked);
 	};
+
 	const onClickMenu = () => {
 		setIsMenuOpened(!isMenuOpened);
 	};
+	// 메뉴모달 useEffect
 	useEffect(() => {
 		const onClick = (e: MouseEvent) => {
 			if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
@@ -42,6 +45,15 @@ const Post = ({ post }: PostProps) => {
 			window.removeEventListener('click', onClick);
 		};
 	}, [isMenuOpened, menuRef]);
+
+	// useEffect(() => {
+	// 	if (isCommentClicked) {
+	// 		document.body.classList.add('overflow-hidden');
+	// 	} else {
+	// 		document.body.classList.remove('overflow-hidden');
+	// 	}
+	// }, [isCommentClicked]);
+
 	console.log(post.postImages);
 	return (
 		<>
@@ -97,9 +109,12 @@ const Post = ({ post }: PostProps) => {
 										<AiOutlineHeart size={20} />
 									)}
 								</div>
-								{/* <div>
-									<FaRegComments size={20} />
-								</div> */}
+								<div className='cursor-pointer' onClick={onClickComment}>
+									<div>
+										<FaRegComments size={21} />
+									</div>
+								</div>
+								{/* 코멘트 창 */}
 							</div>
 						</div>
 						<div className='mx-[20px] mt-3 text-sm font-medium'>{post.text}</div>
