@@ -9,18 +9,31 @@ import { RiLockPasswordLine } from 'react-icons/ri';
 import { useForm } from 'react-hook-form';
 
 export const SettingPage = () => {
+	// 첫 번째 폼: 프로필 수정
 	const {
-		register,
-		handleSubmit,
-		watch,
-		clearErrors,
-		setError,
-		resetField,
-		formState: { errors },
+		register: registerProfile,
+		handleSubmit: handleProfileSubmit,
+		watch: profileWatch,
+		setError: setProfileError,
+		clearErrors: clearProfileErrors,
+		formState: { errors: profileErrors },
 	} = useForm({
 		mode: 'onChange',
 		defaultValues: {
 			nickNameChange: '박미선',
+		},
+	});
+	// 두 번째 폼: 비밀번호 재설정
+	const {
+		register: registerPassword,
+		handleSubmit: handlePasswordSubmit,
+		watch: passwordWatch,
+		setError: setPasswordError,
+		resetField: resetPasswordField,
+		formState: { errors: passwordErrors },
+	} = useForm({
+		mode: 'onChange',
+		defaultValues: {
 			nowPassword: '',
 			passwordReset: '',
 			passwordResetConfirm: '',
@@ -48,11 +61,11 @@ export const SettingPage = () => {
 		console.log(data);
 
 		if (data.nickNameChange === nickNameChecked) {
-			setError('nickNameChange', {
+			setProfileError('nickNameChange', {
 				message: '중복된 사용자 이름이 존재합니다. 다른 이름을 사용해주세요.',
 			});
 		} else {
-			clearErrors('nickNameChange');
+			clearProfileErrors('nickNameChange');
 		}
 
 		return data;
@@ -62,23 +75,23 @@ export const SettingPage = () => {
 		console.log(data);
 
 		if (data.nowPassword !== 'Qkraltjs819!') {
-			setError('nowPassword', {
+			setPasswordError('nowPassword', {
 				message: '비밀번호가 일치하지 않습니다.',
 			});
-			resetField('passwordReset', { defaultValue: '' });
-			resetField('passwordResetConfirm', { defaultValue: '' });
+			resetPasswordField('passwordReset', { defaultValue: '' });
+			resetPasswordField('passwordResetConfirm', { defaultValue: '' });
 			return;
 		}
 
 		if (data.nowPassword === data.passwordReset) {
-			setError('passwordReset', {
+			setPasswordError('passwordReset', {
 				message: '현재 비밀번호와는 다른 비밀번호를 입력하셔야 합니다.',
 			});
 			return;
 		}
 
-		if (watch('passwordReset') !== watch('passwordResetConfirm')) {
-			setError('passwordResetConfirm', {
+		if (data.passwordReset !== data.passwordResetConfirm) {
+			setPasswordError('passwordResetConfirm', {
 				message: '비밀번호가 일치하지 않습니다.',
 			});
 			return;
@@ -97,7 +110,7 @@ export const SettingPage = () => {
 
 			<div className='min-h-screen min-w-full rounded-t-[10px] bg-white px-[30px]'>
 				{/* 프로필 사진 및 닉네임 설정 */}
-				<form onSubmit={handleSubmit(onSubmitProfile)} className='mb-[20px] pt-[30px]'>
+				<form onSubmit={handleProfileSubmit(onSubmitProfile)} className='mb-[20px] pt-[30px]'>
 					<div className='flex w-[100px] items-center justify-between'>
 						<BiEdit />
 						<div className='text-[16px] font-semibold'>프로필 수정</div>
@@ -134,17 +147,18 @@ export const SettingPage = () => {
 						<div className='ml-[12px] flex-grow'>
 							<Input
 								backgroundColor='bg-white'
-								{...register('nickNameChange', {
+								{...registerProfile('nickNameChange', {
 									required: '사용자 이름은 필수입니다.',
 									pattern: {
 										value: /^[가-힣a-zA-Z0-9]{2,8}$/,
 										message: '글자는 2자 ~ 8자',
 									},
 								})}
-								isValid={errors.nickNameChange && false}
-								errorMessage={errors.nickNameChange?.message}
+								isValid={profileErrors.nickNameChange && false}
+								errorMessage={profileErrors.nickNameChange?.message}
 								successMessage={
-									watch('nickNameChange') !== nickNameChecked && '사용 가능한 사용자 이름입니다.'
+									profileWatch('nickNameChange') !== nickNameChecked &&
+									'사용 가능한 사용자 이름입니다.'
 								}
 							/>
 						</div>
@@ -156,7 +170,7 @@ export const SettingPage = () => {
 				<hr className='mb-[20px] border border-gray-300' />
 
 				{/* 비밀번호 재설정 */}
-				<form onSubmit={handleSubmit(onSubmitPassword)}>
+				<form onSubmit={handlePasswordSubmit(onSubmitPassword)}>
 					<div className='flex w-[128px] items-center justify-between'>
 						<RiLockPasswordLine />
 						<div className='text-[16px] font-semibold'>비밀번호 재설정</div>
@@ -168,14 +182,16 @@ export const SettingPage = () => {
 								type='password'
 								placeholder='현재 비밀번호'
 								backgroundColor='bg-white'
-								{...register('nowPassword', {
+								{...registerPassword('nowPassword', {
 									required: '현재 비밀번호를 입력해주세요.',
 									validate: (value) =>
 										value === 'Qkraltjs819!' ? true : '비밀번호가 일치하지 않습니다.',
 								})}
-								isValid={errors.nowPassword && false}
-								errorMessage={errors.nowPassword?.message}
-								successMessage={watch('nowPassword') === 'Qkraltjs819!' && '비밀번호가 일치합니다.'}
+								isValid={passwordErrors.nowPassword && false}
+								errorMessage={passwordErrors.nowPassword?.message}
+								successMessage={
+									passwordWatch('nowPassword') === 'Qkraltjs819!' && '비밀번호가 일치합니다.'
+								}
 							/>
 						</div>
 
@@ -184,7 +200,7 @@ export const SettingPage = () => {
 								type='password'
 								placeholder='새로운 비밀번호'
 								backgroundColor='bg-white'
-								{...register('passwordReset', {
+								{...registerPassword('passwordReset', {
 									required: '비밀번호는 필수입니다.',
 									minLength: {
 										value: 8,
@@ -195,9 +211,9 @@ export const SettingPage = () => {
 										message: '소문자, 대문자, 숫자, 특수 문자를 포함해야 합니다.',
 									},
 								})}
-								isValid={errors.passwordReset && false}
-								errorMessage={errors.passwordReset?.message}
-								successMessage={watch('passwordReset') && '사용 가능한 비밀번호입니다.'}
+								isValid={passwordErrors.passwordReset && false}
+								errorMessage={passwordErrors.passwordReset?.message}
+								successMessage={passwordWatch('passwordReset') && '사용 가능한 비밀번호입니다.'}
 							/>
 						</div>
 
@@ -206,14 +222,16 @@ export const SettingPage = () => {
 								type='password'
 								placeholder='새로운 비밀번호 확인'
 								backgroundColor='bg-white'
-								{...register('passwordResetConfirm', {
+								{...registerPassword('passwordResetConfirm', {
 									required: '비밀번호 확인은 필수입니다.',
 									validate: (value) =>
-										value === watch('passwordReset') ? true : '비밀번호가 일치하지 않습니다.',
+										value === passwordWatch('passwordReset')
+											? true
+											: '비밀번호가 일치하지 않습니다.',
 								})}
-								isValid={errors.passwordResetConfirm && false}
-								errorMessage={errors.passwordResetConfirm?.message}
-								successMessage={watch('passwordResetConfirm') && '비밀번호가 일치합니다.'}
+								isValid={passwordErrors.passwordResetConfirm && false}
+								errorMessage={passwordErrors.passwordResetConfirm?.message}
+								successMessage={passwordWatch('passwordResetConfirm') && '비밀번호가 일치합니다.'}
 							/>
 						</div>
 					</div>
