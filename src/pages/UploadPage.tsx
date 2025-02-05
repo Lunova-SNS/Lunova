@@ -13,11 +13,6 @@ export interface FileObj {
 	type: string;
 }
 
-interface Payload {
-	fileName: string;
-	contentType: string;
-}
-
 const UploadPage = () => {
 	const [fileList, setFileList] = useState<FileObj[]>([]);
 	const [text, setText] = useState('');

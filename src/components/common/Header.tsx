@@ -18,6 +18,7 @@ export default function Header() {
 					<img
 						src={Logo}
 						alt='AuraSphere'
+						className='w-36'
 						onClick={() => {
 							navigate('/');
 						}}
