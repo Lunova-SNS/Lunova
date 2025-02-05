@@ -5,8 +5,9 @@ export default {
 		extend: {
 			colors: {
 				backColor: '#F7F7F7', // 전체 배경색
-				mainColor: '#9DC6F5', // 메인 컬러
-				subColor: '#D6E9FF', // 서브 컬러
+				mainColor: '#9777FF', // 메인 컬러
+				subColor: '#EAE8FF', // 서브 컬러
+				pointColor: '#FFBFD3', // 포인트 컬러
 				subText: '#757575', // 서브 텍스트 컬러
 				gray: {
 					100: '#ECECEC', // input disabled
@@ -33,7 +34,7 @@ export default {
 			borderRadius: {
 				xs: '4px',
 				sm: '5px',
-				default: '10px',
+				default: '6px',
 			},
 		},
 	},
