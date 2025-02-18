@@ -1,5 +1,5 @@
 import { BiPlus } from 'react-icons/bi';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/common/Button';
 import { BackButton } from '@/components/common/BackButton';
 import { useParams } from 'react-router-dom';
@@ -16,9 +16,11 @@ export interface FileObj {
 const UploadPage = () => {
 	const [fileList, setFileList] = useState<FileObj[]>([]);
 	const [text, setText] = useState('');
+	const [isDragging, setIsDragging] = useState(false);
 	const { postId } = useParams<{ postId?: string }>();
 	const maxLength = 150;
 	const { showToast } = useToastStore(); // toast 컴포넌트 사용
+
 	const handleTextCount = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 		// 텍스트 카운트
 		if (Number(text) > 0) {
@@ -26,9 +28,33 @@ const UploadPage = () => {
 		}
 	};
 
-	const handleSaveFiles = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleDragEnter = (event: React.DragEvent<HTMLDivElement>) => {
+		event.preventDefault();
+		event.stopPropagation();
+		setIsDragging(true);
+	};
+
+	const handleDragLeave = (event: React.DragEvent<HTMLDivElement>) => {
+		event.preventDefault();
+		event.stopPropagation();
+		setIsDragging(false);
+	};
+
+	const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
+		event.preventDefault();
+		event.stopPropagation();
+		setIsDragging(false);
+		if (event.dataTransfer.files) {
+			handleSaveFiles(event.dataTransfer.files);
+		}
+	};
+
+	const handleFileInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+		handleSaveFiles(event.target.files); //파일 선택 input이 변경될 때 실행
+	};
+
+	const handleSaveFiles = (files: FileList | null) => {
 		const newFileList: FileObj[] = []; //새로운 filelist 배열을 담기 위해 생성
-		const files = event.target.files; // 파일 첨부 input에서 선택되는 파일들
 
 		if (!files) return;
 
@@ -105,7 +131,9 @@ const UploadPage = () => {
 	console.log(fileList);
 
 	return (
-		<div className='mx-default flex min-h-[100svh] flex-col'>
+		<div
+			className={`mx-default flex min-h-[100svh] flex-col ${isDragging ? 'bg-gray-200 opacity-25' : ''}`}
+		>
 			<header className='pt-5'>
 				<div className='pb-2'>
 					<BackButton />
@@ -117,7 +145,7 @@ const UploadPage = () => {
 					<div className='flex flex-col items-end'>
 						<label
 							htmlFor='file'
-							className='hover:bg-hoverColor mb-3 flex w-5 cursor-pointer justify-center rounded-sm bg-mainColor duration-300 active:scale-95'
+							className='mb-3 flex w-5 cursor-pointer justify-center rounded-sm bg-mainColor duration-300 hover:bg-hoverColor active:scale-95'
 						>
 							<BiPlus color='white' size={20} />
 						</label>
@@ -129,10 +157,16 @@ const UploadPage = () => {
 							accept='image/* ,video/*'
 							className='hidden'
 							onFocus={(e) => (e.currentTarget.value = '')}
-							onChange={handleSaveFiles}
+							onChange={handleFileInput}
 							required
 						/>
-						<div className='h-auto w-[300px] rounded-default border-2 border-mainColor bg-white'>
+						<div
+							className='h-auto w-[300px] rounded-default border-2 border-mainColor bg-white'
+							onDragEnter={handleDragEnter}
+							onDragOver={handleDragEnter}
+							onDragLeave={handleDragLeave}
+							onDrop={handleDrop}
+						>
 							<UploadCarousel slides={fileList} />
 						</div>
 						<div className='my-auto mb-auto text-xs text-subText'>
@@ -148,7 +182,7 @@ const UploadPage = () => {
 							wrap='hard'
 							onChange={handleTextCount}
 							placeholder='오늘의 아우라를 표현해보세요 ✨'
-							className='focus:border-hoverColor mb-9 h-full min-h-28 w-[300px] grow resize-none rounded-default p-2 text-base focus:outline-none focus:ring-2 focus:ring-subColor'
+							className='mb-9 h-full min-h-28 w-[300px] grow resize-none rounded-default p-2 text-base focus:border-hoverColor focus:outline-none focus:ring-2 focus:ring-subColor'
 						/>
 						<div className='absolute bottom-11 right-2 text-sm text-subText'>
 							{maxLength - text.length} / {maxLength}
