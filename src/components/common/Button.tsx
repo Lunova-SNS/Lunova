@@ -22,12 +22,12 @@ export const Button: React.FC<ButtonProps> = ({
 	minWidth = 'min-w-full',
 	minHeight = 'min-h-[36px]',
 	textSize = 'text-lg',
-	textColor = 'text-[#000000]',
+	textColor = 'text-[#FFFFFF]',
 	fontBold = 'font-semibold',
 	borderRadius = 'rounded-default',
 	...props
 }) => {
-	const baseStyles = `${minHeight} ${minWidth} ${textSize} ${textColor} ${fontBold} ${borderRadius} flex items-center justify-center bg-mainColor duration-300 hover:bg-[#629ada] active:scale-95`;
+	const baseStyles = `${minHeight} ${minWidth} ${textSize} ${textColor} ${fontBold} ${borderRadius} flex items-center justify-center bg-mainColor duration-300 hover:bg-hoverColor active:scale-95`;
 
 	const disabledStyles = disabled
 		? 'bg-[#A6AEB3] hover:bg-[#A6AEB3] active:scale-100 cursor-not-allowed'

@@ -27,7 +27,7 @@ export const UserInfoPage = () => {
 
 						{/* 아이콘 */}
 						<div className='pointer-events-none absolute left-[26px] top-[26px] z-10 opacity-0 group-hover:opacity-100'>
-							<MdPhotoCamera size={'30px'} color='#D6E9FF' />
+							<MdPhotoCamera size={'30px'} color='#EAE8FF' />
 						</div>
 
 						<img

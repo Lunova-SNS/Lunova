@@ -18,7 +18,7 @@ export const SignUpPage = () => {
 	// @ts-expect-error expected behavior
 	const [emailChecked, setemailChecked] = useState<string>('asd@asd.com');
 	// @ts-expect-error expected behavior
-	const [nickNameChecked, setNickNameChecked] = useState<string>('박미선');
+	const [nickNameChecked, setNickNameChecked] = useState<string>('user1');
 	// @ts-expect-error expected behavior
 	const [numberChecked, setNumberChecked] = useState<string>('123456');
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);

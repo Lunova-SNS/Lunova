@@ -20,7 +20,7 @@ export const SettingPage = () => {
 	} = useForm({
 		mode: 'onChange',
 		defaultValues: {
-			nickNameChange: '박미선',
+			nickNameChange: 'user1',
 		},
 	});
 	// 두 번째 폼: 비밀번호 재설정
@@ -43,7 +43,7 @@ export const SettingPage = () => {
 	const [imgFile, setImgFile] = useState<File>();
 	const [previewImg, setPreviewImg] = useState<string>('');
 	// @ts-expect-error expected behavior
-	const [nickNameChecked, setNickNameChecked] = useState<string>('박미선');
+	const [nickNameChecked, setNickNameChecked] = useState<string>('user1');
 
 	const onUploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (!e.target.files) return;
@@ -74,7 +74,7 @@ export const SettingPage = () => {
 	const onSubmitPassword = (data) => {
 		console.log(data);
 
-		if (data.nowPassword !== 'Qkraltjs819!') {
+		if (data.nowPassword !== 'Qwerasdf000!') {
 			setPasswordError('nowPassword', {
 				message: '비밀번호가 일치하지 않습니다.',
 			});
@@ -126,7 +126,7 @@ export const SettingPage = () => {
 
 							{/* 아이콘 */}
 							<div className='pointer-events-none absolute left-[26px] top-[26px] z-[20] opacity-0 group-hover:opacity-100'>
-								<HiOutlinePhotograph size={'30px'} color='#D6E9FF' />
+								<HiOutlinePhotograph size={'30px'} color='#EAE8FF' />
 							</div>
 
 							<img
@@ -185,12 +185,12 @@ export const SettingPage = () => {
 								{...registerPassword('nowPassword', {
 									required: '현재 비밀번호를 입력해주세요.',
 									validate: (value) =>
-										value === 'Qkraltjs819!' ? true : '비밀번호가 일치하지 않습니다.',
+										value === 'Qwerasdf000!' ? true : '비밀번호가 일치하지 않습니다.',
 								})}
 								isValid={passwordErrors.nowPassword && false}
 								errorMessage={passwordErrors.nowPassword?.message}
 								successMessage={
-									passwordWatch('nowPassword') === 'Qkraltjs819!' && '비밀번호가 일치합니다.'
+									passwordWatch('nowPassword') === 'Qwerasdf000!' && '비밀번호가 일치합니다.'
 								}
 							/>
 						</div>
