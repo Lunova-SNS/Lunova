@@ -16,7 +16,7 @@ export const LoginPage = () => {
 	// @ts-expect-error expected behavior
 	const [emailChecked, setemailChecked] = useState<string>('asd@asd.com');
 	// @ts-expect-error expected behavior
-	const [passwordChecked, setPasswordChecked] = useState<string>('Qkraltjs819!');
+	const [passwordChecked, setPasswordChecked] = useState<string>('Qwerasdf000!');
 	const [isOpened, setIsOpened] = useState<boolean>(false);
 	const navigate = useNavigate();
 	// @ts-expect-error expected behavior
@@ -101,7 +101,7 @@ export const LoginPage = () => {
 				<button
 					onClick={() => navigate('/signup', { replace: true })}
 					type='button'
-					className='text-[#4B8CD7]'
+					className='text-[#8C81FF]'
 				>
 					회원가입하기
 				</button>
