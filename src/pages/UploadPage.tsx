@@ -21,7 +21,9 @@ const UploadPage = () => {
 	const { showToast } = useToastStore(); // toast 컴포넌트 사용
 	const handleTextCount = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 		// 텍스트 카운트
-		setText(e.target.value);
+		if (Number(text) > 0) {
+			setText(e.target.value);
+		}
 	};
 
 	const handleSaveFiles = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,12 +1,3 @@
----
-name: PULL_REQUEST_TEMPLATE
-about: PULL_REQUEST_TEMPLATE
-title: ''
-labels: ''
-assignees: ''
-
----
-
 ## #️⃣ Issue Number
 
 <!--- ex) #이슈번호, #이슈번호 -->
