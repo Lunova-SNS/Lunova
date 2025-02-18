@@ -14,7 +14,7 @@ export default function Header() {
 	return (
 		<>
 			<div className='flex items-center justify-between bg-white'>
-				<div className='mb-3 ml-default mt-1 cursor-pointer'>
+				<div className='mb-3 ml-3 mt-1 cursor-pointer'>
 					<img
 						src={Logo}
 						alt='AuraSphere'

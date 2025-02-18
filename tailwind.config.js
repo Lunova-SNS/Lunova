@@ -8,6 +8,7 @@ export default {
 				mainColor: '#9777FF', // 메인 컬러
 				subColor: '#EAE8FF', // 서브 컬러
 				pointColor: '#FFBFD3', // 포인트 컬러
+				hoverColor: '#7A3AFF', // 버튼 호버 시 컬러
 				subText: '#757575', // 서브 텍스트 컬러
 				gray: {
 					100: '#ECECEC', // input disabled
