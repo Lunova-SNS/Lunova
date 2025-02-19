@@ -8,9 +8,11 @@
 		"tsc": "tsc --noEmit",
 		"build": "tsc && vite build",
 		"lint": "eslint .",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"generate-types": "npx supabase gen types typescript --project-id falpcrdnsvuxdunhxicy --schema public > types_db.ts"
 	},
 	"dependencies": {
+		"@supabase/supabase-js": "^2.48.1",
 		"@tanstack/react-query": "^5.63.0",
 		"@types/react-router-dom": "^5.3.3",
 		"embla-carousel-fade": "^8.5.2",
